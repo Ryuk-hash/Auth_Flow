@@ -8,9 +8,7 @@ let transporter = nodemailer.createTransport({
     }
 })
 
-const subjects = ['Test Subject']
-
-const sendMail = (email, message) => {
+const sendVerifyMail = (email, message) => {
     const emailOption = {
         from: process.env.EMAIL,
         to: `${email}`,
@@ -25,6 +23,21 @@ const sendMail = (email, message) => {
     })
 }
 
+const sendResetMail = (email, message) => {
+    const emailOption = {
+        from: process.env.EMAIL,
+        to: `${email}`,
+        subject: 'Reset Account Password!',
+        html: `${message}`
+    }
+    transporter.sendMail(emailOption, (err, data) => {
+        if (err) {
+            return console.log('Error occured: ', err)
+        }
+        return console.log('Email sent!!')
+    })
+}
+
 module.exports = {
-    sendMail
+    sendVerifyMail, sendResetMail
 }

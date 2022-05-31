@@ -14,4 +14,12 @@ router.post('/login', userController.loginUser)
 // @Access: public
 router.get('/verify/:userId/:token', userController.verifyUser)
 
+// @POST: Send password reset link
+// @Access: public
+router.post('/password-reset', userController.send_password_reset_link)
+
+// @POST: Reset password
+// @Access: public
+router.post('/password-reset/:userId/:token', userController.reset_password)
+
 module.exports = router

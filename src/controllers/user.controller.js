@@ -1,11 +1,12 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const Joi = require('joi')
 
 const userModel = require('../models/User')
 const tokenModel = require('../models/Token')
 
 const { userSchema } = require('../helpers/validate_schema')
-const { sendMail } = require('../helpers/sendMail')
+const { sendVerifyMail, sendResetMail } = require('../helpers/sendMail')
 
 exports.registerUser = async (req, res) => {
     try {
@@ -41,7 +42,8 @@ exports.registerUser = async (req, res) => {
 
             const message = `${process.env.BASE_URL}/api/v1/user/verify/${user._id}/${token.token}`
 
-            sendMail(email, message)
+            sendVerifyMail(email, message)
+
             res.status(201).json({
                 message: 'An email has been sent to your account. Please verify!',
             })
@@ -117,7 +119,6 @@ exports.verifyUser = async (req, res) => {
         const { userId, token } = req.params
 
         const user = await userModel.findOne({ _id: userId })
-        console.log(user)
 
         if (!user) {
             return res.status(400).json({
@@ -126,7 +127,6 @@ exports.verifyUser = async (req, res) => {
         }
 
         const userToken = await tokenModel.findOne({ userId: userId, token: token })
-        console.log(userToken)
 
         if (!userToken) {
             return res.status(400).json({
@@ -144,6 +144,95 @@ exports.verifyUser = async (req, res) => {
     catch (err) {
         res.status(500).json({
             msg: 'Error!',
+            error: err
+        })
+    }
+}
+
+exports.send_password_reset_link=async (req, res) => {
+    try {
+        const schema = Joi.object({ email: Joi.string().email().required() })
+        const { err } = schema.validate(req.body)
+        const { email } = req.body
+
+        if (err) {
+            return res.status(400).json({
+                msg: 'Error!',
+                error: err
+            })
+        }
+
+        const user = await userModel.findOne({ email: email })
+
+        if (!user) {
+            return res.status(404).json({
+                msg: 'Email address is not registered!!'
+            })
+        }
+
+        const token = new tokenModel({
+            userId: user._id,
+            token: Math.floor(1000 + Math.random() * 9000)
+        })
+
+        await token.save()
+
+        const message = `${process.env.BASE_URL}/api/v1/user/password-reset/${user._id}/${token.token}`
+
+        sendResetMail(email, message)
+
+        res.status(201).json({
+            message: 'Password reset link has been sent to your email address!'
+        })
+    } catch (err) {
+        res.status(500).json({
+            msg: 'Error!!',
+            error: err
+        })
+    }
+}
+
+exports.reset_password=async (req, res) => {
+    try {
+        const { userId, token } = req.params
+        const { password } = req.body
+
+        const user = await userModel.findOne({ _id: userId })
+
+        if (!user) {
+            return res.status(400).json({
+                msg: 'Password reset link is invalid!'
+            })
+        }
+
+        const userToken = await tokenModel.findOne({ userId: userId, token: token })
+
+        if (!userToken) {
+            return res.status(400).json({
+                msg: 'Password reset link is invalid!'
+            })
+        }
+
+        // Else userId and token is valid. So we can change our user password
+        bcrypt.hash(password, 10, async (err, hash) => {
+            if (err) {
+                return res.status(500).json({
+                    msg: 'Password reset failed!',
+                    error: err
+                })
+            }
+            user.password = hash
+            await user.save()
+            await tokenModel.findByIdAndRemove(userToken._id)
+        })
+
+        res.status(200).json({
+            msg: 'Password reset successful. Login with your new account password!'
+        })
+    }
+    catch (err) {
+        res.status(500).json({
+            msg: 'Error!!',
             error: err
         })
     }
