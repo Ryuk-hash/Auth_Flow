@@ -13,6 +13,12 @@ connectDB()
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
+app.get('/', (req, res) => {
+    res.status(200).json({
+        msg: "Server up and running!"
+    })
+})
+
 // Mounting routes
 app.use("/api/v1/user", require("./src/routes/user.route"))
 
