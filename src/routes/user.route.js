@@ -3,11 +3,11 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-const { userSchema } = require('../config/validate_schema')
+const { userSchema } = require('../helpers/validate_schema')
 const userModel = require('../models/User')
 const tokenModel = require('../models/Token')
 
-const { sendMail } = require('../config/sendMail')
+const { sendMail } = require('../helpers/sendMail')
 
 const router = express.Router()
 

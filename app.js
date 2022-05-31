@@ -5,7 +5,7 @@ require("dotenv").config({ path: "./.env" })
 
 const app = express()
 
-const connectDB = require("./src/config/db")
+const connectDB = require("./src/helpers/db")
 
 // Connect to database
 connectDB()
