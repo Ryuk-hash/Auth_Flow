@@ -4,7 +4,6 @@ const path = require("path")
 require("dotenv").config({ path: "./.env" })
 
 const app = express()
-const baseURL = 'http://localhost:3000'
 
 const connectDB = require("./src/config/db")
 
@@ -15,7 +14,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 // Mounting routes
-app.use("/api/v1/users", require("./src/routes/user.route"))
+app.use("/api/v1/user", require("./src/routes/user.route"))
 
 const server = app.listen(process.env.PORT || 3000, console.log(`Server running on port ${process.env.PORT || 3000}`.green.bold))
 
