@@ -42,7 +42,7 @@
 ## 🔱 API Endpoints
 
 |  API Endpoints | HTTP Method | Description |
-|-|-|-|
+|:-|:-|:-|
 |/api/v1/user/register|POST|Register as new user|
 |/api/v1/user/login|POST|Login as existing user|
 |/api/v1/user/verify/:userId/:token|GET|Verify user email address for new registration|
