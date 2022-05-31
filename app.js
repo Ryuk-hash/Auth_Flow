@@ -4,6 +4,7 @@ const path = require("path")
 require("dotenv").config({ path: "./.env" })
 
 const app = express()
+const baseURL = 'http://localhost:3000'
 
 const connectDB = require("./api/config/db")
 
