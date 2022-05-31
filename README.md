@@ -12,6 +12,7 @@
 
    ```bash
    git clone https://github.com/sandip2224/Auth_Flow.git
+   cd Auth_Flow
    ```   
 #### Install dependencies and dev dependency using
 
