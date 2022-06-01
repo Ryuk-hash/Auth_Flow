@@ -1,0 +1,402 @@
+{
+	"info": {
+		"_postman_id": "98c59256-4722-47fb-ac3c-eaf382976805",
+		"name": "Auth_Flow_REST_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12943951"
+	},
+	"item": [
+		{
+			"name": "Register as a new user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"\",\r\n    \"lastName\": \"\",\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://authflowapi.herokuapp.com/api/v1/user/register",
+					"protocol": "http",
+					"host": [
+						"authflowapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Sample user registration",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Sandipan\",\r\n    \"lastName\": \"Das\",\r\n    \"email\": \"sandipan2224@gmail.com\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://authflowapi.herokuapp.com/api/v1/user/register",
+							"protocol": "http",
+							"host": [
+								"authflowapi",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"register"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "68"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"44-DghK5v4sLGluTwFuw74Zdv+Ybwg\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 01 Jun 2022 01:32:56 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"An email has been sent to your account. Please verify!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Login as existing user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://authflowapi.herokuapp.com/api/v1/user/login",
+					"protocol": "http",
+					"host": [
+						"authflowapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Sample user login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"sandipan2224@gmail.com\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://authflowapi.herokuapp.com/api/v1/user/login",
+							"protocol": "http",
+							"host": [
+								"authflowapi",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "332"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"14c-mgPJictYhXvz1xg+9AVVdXIcWlo\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 01 Jun 2022 01:35:49 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"userId\": \"6296c1c8871f509ac3221108\",\n    \"email\": \"sandipan2224@gmail.com\",\n    \"message\": \"Login successful!!\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhbmRpcGFuMjIyNEBnbWFpbC5jb20iLCJ1c2VySWQiOiI2Mjk2YzFjODg3MWY1MDlhYzMyMjExMDgiLCJpYXQiOjE2NTQwNDczNDksImV4cCI6MTY1NDA1MDk0OX0.CFB0rEl447i164_2yvKuPGv5OM8eQM1iNW1x46zU_-M\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Verify registered email address",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://authflowapi.herokuapp.com/api/v1/user/verify/:userId/:token",
+					"protocol": "http",
+					"host": [
+						"authflowapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"verify",
+						":userId",
+						":token"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": null,
+							"description": "Unique user ID for a registered user"
+						},
+						{
+							"key": "token",
+							"value": null,
+							"description": "Randomly generated 4 digit numeric OTP"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Email password reset link",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://authflowapi.herokuapp.com/api/v1/user/password-reset",
+					"protocol": "http",
+					"host": [
+						"authflowapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"password-reset"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Sample pwd reset email",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"sandipan2224@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://authflowapi.herokuapp.com/api/v1/user/password-reset",
+							"protocol": "http",
+							"host": [
+								"authflowapi",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"password-reset"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "70"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"46-p9FciWY3VcZ+1VevoewZ8Kdta9M\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 01 Jun 2022 01:40:58 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Password reset link has been sent to your email address!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Reset account password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://authflowapi.herokuapp.com/api/v1/user/password-reset/:userId/:token",
+					"protocol": "http",
+					"host": [
+						"authflowapi",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"password-reset",
+						":userId",
+						":token"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": null,
+							"description": "Unique user ID for a registered user"
+						},
+						{
+							"key": "token",
+							"value": null,
+							"description": "Randomly generated 4 digit numeric token for addition verification\n"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
