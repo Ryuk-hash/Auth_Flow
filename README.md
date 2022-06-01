@@ -23,7 +23,7 @@
 #### Create a _.env_ file inside the root directory and include the following:
 
    ```bash
-   MONGO_URI=<Your_Unique_MongoDB_Cluster_URI>a
+   MONGO_URI=<Your_Unique_MongoDB_Cluster_URI>
    JWT_KEY=<Unique_256-bit_Secret>
    EMAIL=<Valid_Sender_Email>
    PASS=<App_Password_Sender_Email>
