@@ -50,4 +50,6 @@
 |/api/v1/user/password-reset|POST|Send password reset link to registered email address|
 |/api/v1/user/password-reset/:userId/:token|POST|Reset account password with new password|
 
+> P.S: Import the collection (Auth_Flow_REST_API.postman_collection.json) in Postman for detailed documentation
+
 ### 👩‍💻 Project Created & Maintained By - [Sandipan Das](https://linkedin.com/in/sandipan0164)
