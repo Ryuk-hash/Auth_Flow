@@ -1,4 +1,4 @@
-<h2 align="center">Book REST API 🚀</h2>
+<h2 align="center">Auth Flow REST API 🚀</h2>
 
 ## 🔄 Built with
 
